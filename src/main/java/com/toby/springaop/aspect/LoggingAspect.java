@@ -7,7 +7,7 @@ import org.aspectj.lang.annotation.Pointcut;
 @Aspect
 public class LoggingAspect {
 
-    @Before("allGetters()")
+    @Before("allGetters() && allCirclemethods() ")
     public void LoggingAdvice() {
         System.out.println("Get method called.");
     }
@@ -18,7 +18,11 @@ public class LoggingAspect {
     }
 
     @Pointcut("execution(public * get*(..))")
-    public void allGetters() {
+    public void allGetters() {}
 
-    }
+    @Pointcut("within(com.toby.springaop.model.Circle)")
+    public void allCirclemethods() {}
+
+    @Pointcut("args(com.toby.springaop.model.Circle)")
+    public void circleArgs() {}
 }

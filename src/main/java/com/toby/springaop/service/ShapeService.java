@@ -3,9 +3,10 @@ package com.toby.springaop.service;
 import com.toby.springaop.model.Circle;
 import com.toby.springaop.model.Triangle;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class ShapeService {
-
 
     private Circle circle;
 

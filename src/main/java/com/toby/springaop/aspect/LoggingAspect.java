@@ -33,7 +33,7 @@ public class LoggingAspect {
 //        System.out.println("An exception was thrown");
 //    }
 
-    @Around("allGetters()") // Advice code for both before and after target method
+    @Around("@annotation(com.toby.springaop.aspect.Loggable)") // Advice code for both before and after target method
     // must return that value from the target method else it will be lost
     public Object aroundAdvice(ProceedingJoinPoint proceedingJoinPoint) { // proceedingJoinPoint is compulsory
         // Executes target method, not mandatory (can just act as a before)

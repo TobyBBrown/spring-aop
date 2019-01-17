@@ -2,9 +2,7 @@ package com.toby.springaop.aspect;
 
 import com.toby.springaop.model.Circle;
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
-import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.annotation.*;
 
 @Aspect
 public class LoggingAspect {
@@ -21,10 +19,17 @@ public class LoggingAspect {
         System.out.println("Second Advice");
     }
 
-    @Before("args(name)")
-    public void stringArgMethods(String name) {
+    // @After runs even if target method does not complete successfully
+
+    @AfterReturning(pointcut = "args(name)", returning = "returnValue")
+    public void stringArgMethods(String name, String returnValue) {
         System.out.println("A method that takes a String arguments");
         System.out.println("Name: " + name);
+    }
+
+    @AfterThrowing(pointcut = "args(name)", throwing = "exception")
+    public void exceptionAdvice(String name, Exception exception) {
+        System.out.println("An exception was thrown");
     }
 
     @Pointcut("execution(public * get*(..))")

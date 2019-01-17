@@ -7,6 +7,7 @@ public class Triangle {
     }
 
     public void setName(String name) {
+        System.out.println("Setting Triangle name");
         this.name = name;
     }
 

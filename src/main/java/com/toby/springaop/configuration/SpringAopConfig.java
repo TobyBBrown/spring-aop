@@ -1,12 +1,16 @@
 package com.toby.springaop.configuration;
 
+import com.toby.springaop.aspect.LoggingAspect;
 import com.toby.springaop.model.Circle;
 import com.toby.springaop.model.Triangle;
 import com.toby.springaop.service.ShapeService;
+import org.aspectj.lang.annotation.Before;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 @Configuration
+@EnableAspectJAutoProxy
 public class SpringAopConfig {
 
 	@Bean
@@ -23,8 +27,14 @@ public class SpringAopConfig {
 	    return triangle;
     }
 
-    @Bean ShapeService shapeService() {
+    @Bean
+    public ShapeService shapeService() {
 	    return new ShapeService(circle(), triangle());
+    }
+
+    @Bean
+    public LoggingAspect loggingAspect() {
+	    return new LoggingAspect();
     }
 }
 

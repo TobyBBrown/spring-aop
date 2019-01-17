@@ -11,5 +11,6 @@ public class AopMain {
         ApplicationContext ctx = new AnnotationConfigApplicationContext(SpringAopConfig.class);
         ShapeService shapeService = ctx.getBean(ShapeService.class);
         shapeService.printNames();
+        shapeService.getCircle();
     }
 }
